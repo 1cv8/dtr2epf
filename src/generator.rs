@@ -9,6 +9,21 @@ pub enum Severity {
     Warning,
 }
 
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum GenerationVariant {
+    Debug,
+    SyntaxControl,
+}
+
+impl GenerationVariant {
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::Debug => "Для отладки",
+            Self::SyntaxControl => "Для синтаксического контроля",
+        }
+    }
+}
+
 #[derive(Clone, Debug)]
 pub struct GenerationIssue {
     pub severity: Severity,
@@ -25,6 +40,7 @@ pub fn generate(
     project: &Project,
     selected: &HashSet<String>,
     templates: &Templates,
+    variant: GenerationVariant,
 ) -> GenerationResult {
     let mut issues = Vec::new();
     let mut handlers: Vec<&Handler> = project
@@ -42,14 +58,24 @@ pub fn generate(
         &["{{FROM_PLATFORM}}", "{{TO_PLATFORM}}", "{{FUNCTIONS}}"],
         &mut issues,
     );
+    let (subscription_from_platform, subscription_to_platform) = match variant {
+        GenerationVariant::Debug => (
+            &templates.subscription_from_platform,
+            &templates.subscription_to_platform,
+        ),
+        GenerationVariant::SyntaxControl => (
+            &templates.syntax_control_subscription_from_platform,
+            &templates.syntax_control_subscription_to_platform,
+        ),
+    };
     validate_template(
-        &templates.subscription_from_platform,
+        subscription_from_platform,
         "шаблон входящего обработчика FromPlatform",
         &["{{NAME}}", "{{CODE}}"],
         &mut issues,
     );
     validate_template(
-        &templates.subscription_to_platform,
+        subscription_to_platform,
         "шаблон исходящего обработчика ToPlatform",
         &["{{NAME}}", "{{CODE}}"],
         &mut issues,
@@ -89,10 +115,8 @@ pub fn generate(
         }
         let item_template = match (handler.kind, handler.integration) {
             (HandlerKind::Function, _) => &templates.function,
-            (HandlerKind::Subscription, Integration::FromPlatform) => {
-                &templates.subscription_from_platform
-            }
-            (HandlerKind::Subscription, _) => &templates.subscription_to_platform,
+            (HandlerKind::Subscription, Integration::FromPlatform) => subscription_from_platform,
+            (HandlerKind::Subscription, _) => subscription_to_platform,
         };
         let rendered = render_item(item_template, handler, &generated_name);
         if rendered.contains("{{") {
@@ -383,7 +407,12 @@ mod tests {
         let handler_name = handler.name.clone();
         project.handlers.truncate(1);
         let selected = HashSet::from([handler_id]);
-        let result = generate(&project, &selected, &Templates::default());
+        let result = generate(
+            &project,
+            &selected,
+            &Templates::default(),
+            GenerationVariant::Debug,
+        );
         assert!(result.text.contains(&format!("{handler_name}(Parameter)")));
         assert!(result.text.contains("Result = Parameter;"));
         assert!(!result.issues.iter().any(|i| i.severity == Severity::Error));
@@ -412,16 +441,59 @@ mod tests {
         templates.subscription_from_platform = "// IN {{NAME}}\n{{CODE}}".into();
         templates.subscription_to_platform = "// OUT {{NAME}}\n{{CODE}}".into();
 
-        let result = generate(&project, &selected, &templates);
+        let result = generate(&project, &selected, &templates, GenerationVariant::Debug);
 
         assert!(result.text.contains(&format!("// IN {incoming_name}")));
         assert!(result.text.contains(&format!("// OUT {outgoing_name}")));
     }
 
     #[test]
+    fn generation_variant_selects_its_subscription_templates() {
+        let mut project = load_fixture();
+        let incoming = project
+            .handlers
+            .iter()
+            .find(|handler| handler.integration == Integration::FromPlatform)
+            .expect("fixture has an incoming handler")
+            .clone();
+        let outgoing = project
+            .handlers
+            .iter()
+            .find(|handler| handler.integration == Integration::ToPlatform)
+            .expect("fixture has an outgoing handler")
+            .clone();
+        let selected = HashSet::from([incoming.id.clone(), outgoing.id.clone()]);
+        project.handlers = vec![incoming, outgoing];
+        let mut templates = Templates::default();
+        templates.subscription_from_platform = "// DEBUG IN {{NAME}}\n{{CODE}}".into();
+        templates.subscription_to_platform = "// DEBUG OUT {{NAME}}\n{{CODE}}".into();
+        templates.syntax_control_subscription_from_platform =
+            "// SYNTAX IN {{NAME}}\n{{CODE}}".into();
+        templates.syntax_control_subscription_to_platform =
+            "// SYNTAX OUT {{NAME}}\n{{CODE}}".into();
+
+        let result = generate(
+            &project,
+            &selected,
+            &templates,
+            GenerationVariant::SyntaxControl,
+        );
+
+        assert!(result.text.contains("// SYNTAX IN"));
+        assert!(result.text.contains("// SYNTAX OUT"));
+        assert!(!result.text.contains("// DEBUG IN"));
+        assert!(!result.text.contains("// DEBUG OUT"));
+    }
+
+    #[test]
     fn empty_selection_is_reported_as_error() {
         let project = load_fixture();
-        let result = generate(&project, &HashSet::new(), &Templates::default());
+        let result = generate(
+            &project,
+            &HashSet::new(),
+            &Templates::default(),
+            GenerationVariant::Debug,
+        );
 
         assert!(result.text.contains("#Область"));
         assert!(result.issues.iter().any(|issue| {
@@ -439,7 +511,12 @@ mod tests {
         let selected = HashSet::from([first.id.clone(), second.id.clone()]);
         project.handlers = vec![first, second];
 
-        let result = generate(&project, &selected, &Templates::default());
+        let result = generate(
+            &project,
+            &selected,
+            &Templates::default(),
+            GenerationVariant::Debug,
+        );
 
         assert!(result.issues.iter().any(|issue| {
             issue.severity == Severity::Error && issue.message.contains("Дублируется имя метода")
@@ -456,7 +533,12 @@ mod tests {
         let handler_id = handler.id.clone();
         project.handlers.truncate(1);
 
-        let result = generate(&project, &HashSet::from([handler_id]), &templates);
+        let result = generate(
+            &project,
+            &HashSet::from([handler_id]),
+            &templates,
+            GenerationVariant::Debug,
+        );
 
         assert!(result.issues.iter().any(|issue| {
             issue.severity == Severity::Error && issue.message.contains("{{NAME}}")
@@ -469,7 +551,12 @@ mod tests {
     #[test]
     fn generated_module_uses_windows_line_endings() {
         let project = load_fixture();
-        let result = generate(&project, &HashSet::new(), &Templates::default());
+        let result = generate(
+            &project,
+            &HashSet::new(),
+            &Templates::default(),
+            GenerationVariant::Debug,
+        );
         assert!(result.text.contains("\r\n"));
         assert!(!result.text.replace("\r\n", "").contains('\n'));
     }
