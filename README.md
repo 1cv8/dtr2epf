@@ -47,8 +47,11 @@ cargo test
 Проверить загрузчик без открытия GUI:
 
 ```powershell
-cargo run -- --check "tests\fixtures\datareon_sample"
+cargo run --features console -- --check "tests\fixtures\datareon_sample"
 ```
+
+В Windows обычная GUI-сборка запускается без консольного окна. Фича
+`console` включает консольную подсистему для диагностического режима `--check`.
 
 ## Генерация
 

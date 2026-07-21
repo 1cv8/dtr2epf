@@ -1,3 +1,8 @@
+#![cfg_attr(
+    all(target_os = "windows", not(feature = "console"), not(test)),
+    windows_subsystem = "windows"
+)]
+
 mod app;
 mod generator;
 mod model;
