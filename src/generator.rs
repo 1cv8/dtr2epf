@@ -169,6 +169,14 @@ fn render_item(template: &str, handler: &Handler, name: &str) -> String {
         ("{{ORIGINAL_NAME}}", handler.name.clone()),
         ("{{TYPE}}", handler.kind.label().to_owned()),
         ("{{INTEGRATION}}", handler.integration.label().to_owned()),
+        (
+            "{{SUBSCRIPTION_OBJECT}}",
+            handler.subscription_object.clone(),
+        ),
+        (
+            "{{SUBSCRIPTION_OBJECT_MANAGER}}",
+            subscription_object_manager(&handler.subscription_object),
+        ),
         ("{{ENTITY_ID}}", handler.id.clone()),
         ("{{SOURCE_PATH}}", handler.code_path.display().to_string()),
         ("{{PARAMETERS}}", parameters),
@@ -179,6 +187,49 @@ fn render_item(template: &str, handler: &Handler, name: &str) -> String {
         result = result.replace(marker, &value);
     }
     result.trim().to_owned()
+}
+
+fn subscription_object_manager(subscription_object: &str) -> String {
+    let parts: Vec<&str> = subscription_object.split('.').map(str::trim).collect();
+    if parts.len() < 2 || parts[0].is_empty() || parts[1].is_empty() {
+        return String::new();
+    }
+
+    let class = parts[0].to_uppercase();
+    let object_name = parts[1];
+    if class == "РЕГИСТРРАСЧЕТА" {
+        return match parts.as_slice() {
+            [_, object_name] => format!("РегистрыРасчета.{object_name}"),
+            [_, object_name, child_class, child_name]
+                if child_class.to_uppercase() == "ПЕРЕРАСЧЕТ" && !child_name.is_empty() =>
+            {
+                format!("РегистрыРасчета.{object_name}.Перерасчеты.{child_name}")
+            }
+            _ => String::new(),
+        };
+    }
+
+    let manager = match class.as_str() {
+        "ПЛАНОБМЕНА" => "ПланыОбмена",
+        "СПРАВОЧНИК" => "Справочники",
+        "ДОКУМЕНТ" => "Документы",
+        "ЖУРНАЛДОКУМЕНТОВ" => "ЖурналыДокументов",
+        "ПЕРЕЧИСЛЕНИЕ" => "Перечисления",
+        "ОТЧЕТ" => "Отчеты",
+        "ОБРАБОТКА" => "Обработки",
+        "ПЛАНВИДОВХАРАКТЕРИСТИК" => "ПланыВидовХарактеристик",
+        "ПЛАНСЧЕТОВ" => "ПланыСчетов",
+        "ПЛАНВИДОВРАСЧЕТА" => "ПланыВидовРасчета",
+        "РЕГИСТРСВЕДЕНИЙ" => "РегистрыСведений",
+        "РЕГИСТРНАКОПЛЕНИЯ" => "РегистрыНакопления",
+        "РЕГИСТРБУХГАЛТЕРИИ" => "РегистрыБухгалтерии",
+        "БИЗНЕСПРОЦЕСС" => "БизнесПроцессы",
+        "ЗАДАЧА" => "Задачи",
+        "КОНСТАНТА" => "Константы",
+        "ПОСЛЕДОВАТЕЛЬНОСТЬ" => "Последовательности",
+        _ => return String::new(),
+    };
+    format!("{manager}.{object_name}")
 }
 
 fn validate_template(
@@ -243,6 +294,81 @@ mod tests {
         let items = vec!["FirstHandler".to_owned(), "SecondHandler".to_owned()];
 
         assert_eq!(join_rendered_items(&items), "FirstHandler\n\nSecondHandler");
+    }
+
+    #[test]
+    fn converts_subscription_object_classes_to_manager_names() {
+        let cases = [
+            ("ПланОбмена.Test", "ПланыОбмена.Test"),
+            ("Справочник.Test", "Справочники.Test"),
+            ("Документ.Test", "Документы.Test"),
+            ("ЖурналДокументов.Test", "ЖурналыДокументов.Test"),
+            ("Перечисление.Test", "Перечисления.Test"),
+            ("Отчет.Test", "Отчеты.Test"),
+            ("Обработка.Test", "Обработки.Test"),
+            (
+                "ПланВидовХарактеристик.Test",
+                "ПланыВидовХарактеристик.Test",
+            ),
+            ("ПланСчетов.Test", "ПланыСчетов.Test"),
+            ("ПланВидовРасчета.Test", "ПланыВидовРасчета.Test"),
+            ("РегистрСведений.Test", "РегистрыСведений.Test"),
+            ("РегистрНакопления.Test", "РегистрыНакопления.Test"),
+            ("РегистрБухгалтерии.Test", "РегистрыБухгалтерии.Test"),
+            ("РегистрРасчета.Test", "РегистрыРасчета.Test"),
+            ("БизнесПроцесс.Test", "БизнесПроцессы.Test"),
+            ("Задача.Test", "Задачи.Test"),
+            ("Константа.Test", "Константы.Test"),
+            ("Последовательность.Test", "Последовательности.Test"),
+        ];
+
+        for (source, expected) in cases {
+            assert_eq!(subscription_object_manager(source), expected, "{source}");
+        }
+        assert_eq!(
+            subscription_object_manager("справочник.Автомобили"),
+            "Справочники.Автомобили"
+        );
+    }
+
+    #[test]
+    fn converts_calculation_register_recalculation_manager() {
+        assert_eq!(
+            subscription_object_manager("РегистрРасчета.Payroll.Перерасчет.Adjustment"),
+            "РегистрыРасчета.Payroll.Перерасчеты.Adjustment"
+        );
+        assert!(subscription_object_manager("РегистрРасчета.Payroll.Unknown.Item").is_empty());
+        assert!(subscription_object_manager("Unknown.Test").is_empty());
+        assert!(subscription_object_manager("Справочник").is_empty());
+        assert!(subscription_object_manager("Справочник..Test").is_empty());
+    }
+
+    #[test]
+    fn subscription_placeholders_are_filled_only_for_outgoing_handlers() {
+        let project = load_fixture();
+        let outgoing = project
+            .handlers
+            .iter()
+            .find(|handler| {
+                handler.integration == Integration::ToPlatform
+                    && !handler.subscription_object.is_empty()
+            })
+            .expect("fixture has an outgoing handler with SubscriptionObject");
+        let incoming = project
+            .handlers
+            .iter()
+            .find(|handler| handler.integration == Integration::FromPlatform)
+            .expect("fixture has an incoming handler");
+        let template = "{{SUBSCRIPTION_OBJECT}}|{{SUBSCRIPTION_OBJECT_MANAGER}}";
+
+        let outgoing_text = render_item(template, outgoing, &outgoing.name);
+        let expected_manager = subscription_object_manager(&outgoing.subscription_object);
+        assert_eq!(
+            outgoing_text,
+            format!("{}|{expected_manager}", outgoing.subscription_object)
+        );
+        assert!(incoming.subscription_object.is_empty());
+        assert_eq!(render_item(template, incoming, &incoming.name), "|");
     }
 
     #[test]

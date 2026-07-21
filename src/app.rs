@@ -492,7 +492,7 @@ impl DtrApp {
                         );
                     });
                 ui.add(
-                    egui::Label::new("Плейсхолдеры элемента: {{NAME}}, {{ORIGINAL_NAME}}, {{PARAMETERS}}, {{CODE}}, {{TYPE}}, {{INTEGRATION}}, {{ENTITY_ID}}, {{SOURCE_PATH}}")
+                    egui::Label::new("Плейсхолдеры элемента: {{NAME}}, {{ORIGINAL_NAME}}, {{PARAMETERS}}, {{CODE}}, {{TYPE}}, {{INTEGRATION}}, {{ENTITY_ID}}, {{SOURCE_PATH}}, {{SUBSCRIPTION_OBJECT}}, {{SUBSCRIPTION_OBJECT_MANAGER}}. Объект подписки и его менеджер заполняются только для Subscription1C / ToPlatform.")
                         .wrap(),
                 );
                 ui.separator();

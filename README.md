@@ -67,7 +67,9 @@ cargo run --features console -- --check "tests\fixtures\datareon_sample"
 
 Шаблон модуля использует `{{FROM_PLATFORM}}`, `{{TO_PLATFORM}}`, `{{FUNCTIONS}}`, `{{REGION_*}}`, `{{GENERATED_AT}}` и `{{SELECTED_COUNT}}`.
 
-Шаблоны методов используют `{{NAME}}`, `{{ORIGINAL_NAME}}`, `{{PARAMETERS}}`, `{{CODE}}`, `{{TYPE}}`, `{{INTEGRATION}}`, `{{ENTITY_ID}}` и `{{SOURCE_PATH}}`.
+Шаблоны методов используют `{{NAME}}`, `{{ORIGINAL_NAME}}`, `{{PARAMETERS}}`, `{{CODE}}`, `{{TYPE}}`, `{{INTEGRATION}}`, `{{ENTITY_ID}}`, `{{SOURCE_PATH}}`, `{{SUBSCRIPTION_OBJECT}}` и `{{SUBSCRIPTION_OBJECT_MANAGER}}`.
+
+`{{SUBSCRIPTION_OBJECT}}` и `{{SUBSCRIPTION_OBJECT_MANAGER}}` заполняются только для обработчиков `Subscription1C / ToPlatform`. Например, для `Справочник.Автомобили` значением менеджера будет `Справочники.Автомобили`.
 
 ## Лицензия
 

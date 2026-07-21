@@ -19,6 +19,7 @@ pub struct Handler {
     pub name: String,
     pub kind: HandlerKind,
     pub integration: Integration,
+    pub subscription_object: String,
     pub parameters: Vec<String>,
     pub code: String,
     pub code_path: PathBuf,
@@ -160,6 +161,12 @@ impl Project {
                 Some("ToPlatform") => Integration::ToPlatform,
                 _ => Integration::Unknown,
             };
+            let subscription_object =
+                if kind == HandlerKind::Subscription && integration == Integration::ToPlatform {
+                    string_field(&json, "SubscriptionObject")
+                } else {
+                    String::new()
+                };
             let id = string_field(&json, "EntityId");
             let name = string_field(&json, "Name");
             let code_name = string_field(&json, "Code");
@@ -205,6 +212,7 @@ impl Project {
                 name,
                 kind,
                 integration,
+                subscription_object,
                 parameters,
                 code,
                 code_path,
