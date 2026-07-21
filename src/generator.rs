@@ -129,9 +129,9 @@ pub fn generate(
             "{{REGION_FUNCTIONS}}",
             identifier(&templates.region_functions),
         ),
-        ("{{FROM_PLATFORM}}", from_platform.join("\n")),
-        ("{{TO_PLATFORM}}", to_platform.join("\n")),
-        ("{{FUNCTIONS}}", functions.join("\n")),
+        ("{{FROM_PLATFORM}}", join_rendered_items(&from_platform)),
+        ("{{TO_PLATFORM}}", join_rendered_items(&to_platform)),
+        ("{{FUNCTIONS}}", join_rendered_items(&functions)),
     ];
     let mut text = templates.module.clone();
     for (marker, value) in replacements {
@@ -151,6 +151,10 @@ pub fn generate(
         issues,
         selected_count: handlers.len(),
     }
+}
+
+fn join_rendered_items(items: &[String]) -> String {
+    items.join("\n\n")
 }
 
 fn render_item(template: &str, handler: &Handler, name: &str) -> String {
@@ -232,6 +236,13 @@ mod tests {
     fn identifier_replaces_invalid_characters() {
         assert_eq!(identifier(" 1 test-handler "), "_1_test_handler");
         assert_eq!(identifier("Обработчик_1С"), "Обработчик_1С");
+    }
+
+    #[test]
+    fn rendered_items_have_one_empty_line_between_them() {
+        let items = vec!["FirstHandler".to_owned(), "SecondHandler".to_owned()];
+
+        assert_eq!(join_rendered_items(&items), "FirstHandler\n\nSecondHandler");
     }
 
     #[test]
