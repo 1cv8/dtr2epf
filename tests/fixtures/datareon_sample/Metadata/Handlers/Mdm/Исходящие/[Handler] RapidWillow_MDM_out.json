@@ -1,0 +1,44 @@
+{
+    "$type":  "DT.MdmMetadata.Types.Handler1c, DT_Core",
+    "KeepObjectLink":  true,
+    "ProcessingOrder":  0,
+    "Integration":  "ToPlatform",
+    "Type":  "Subscription1C",
+    "Code":  "[Handler] RapidWillow_MDM_out [Code].ext",
+    "WaitResponse":  false,
+    "SubscriptionObject":  "Справочник.RapidWillow",
+    "Parameters":  [
+
+                   ],
+    "Values":  [
+
+               ],
+    "DataToPlatform":  {
+                           "$type":  "DT.MdmMetadata.BusinessProcesses.Fields.StructureField, DT_Core",
+                           "DataTypeId":  "271cce92-6107-4d24-af6b-85de185ac07d",
+                           "Name":  "RapidWillow",
+                           "Id":  "ced4ae3c-c5f7-4648-a996-8262dbc602df",
+                           "IsArray":  false,
+                           "IsRequired":  false,
+                           "IsNullable":  false,
+                           "Description":  "",
+                           "Properties":  {
+                                              "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                          },
+                           "AttributeId":  "00000000-0000-0000-0000-000000000000"
+                       },
+    "FolderId":  "aea052ba-ec94-46e7-8551-3d2654d054d0",
+    "NoTransaction":  false,
+    "EntityId":  "e52288a0-8cdf-470c-96d1-14d605f8beea",
+    "ClusterId":  "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+    "Name":  "RapidWillow_MDM_out",
+    "Description":  "RapidWillow_MDM_out",
+    "Comment":  "Generated for RapidWillow",
+    "Version":  8,
+    "TagsCollection":  [
+
+                       ],
+    "FieldsFromGlobalBusiness":  {
+                                     "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                 }
+}

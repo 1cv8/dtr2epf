@@ -1,0 +1,44 @@
+{
+    "$type":  "DT.MdmMetadata.Types.Handler1c, DT_Core",
+    "KeepObjectLink":  true,
+    "ProcessingOrder":  0,
+    "Integration":  "FromPlatform",
+    "Type":  "Subscription1C",
+    "Code":  "[Handler] ClearWing_AdapterB_in [Code].ext",
+    "WaitResponse":  false,
+    "SubscriptionObject":  "Справочник.ClearWing",
+    "Parameters":  [
+
+                   ],
+    "Values":  [
+
+               ],
+    "DataFromPlatform":  {
+                             "$type":  "DT.MdmMetadata.BusinessProcesses.Fields.StructureField, DT_Core",
+                             "DataTypeId":  "1d935e67-b927-4342-8c42-10ff14626d1d",
+                             "Name":  "ClearWing",
+                             "Id":  "d40f050e-22d1-490c-823d-b1a56ec00d03",
+                             "IsArray":  false,
+                             "IsRequired":  false,
+                             "IsNullable":  false,
+                             "Description":  "",
+                             "Properties":  {
+                                                "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                            },
+                             "AttributeId":  "00000000-0000-0000-0000-000000000000"
+                         },
+    "FolderId":  "4ca22c25-2849-49cd-9b1d-67b7b1c0f44f",
+    "NoTransaction":  false,
+    "EntityId":  "8bd07f2a-79dc-4e30-9e57-618c0b93095e",
+    "ClusterId":  "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+    "Name":  "ClearWing_AdapterB_in",
+    "Description":  "ClearWing_AdapterB_in",
+    "Comment":  "Generated for ClearWing",
+    "Version":  7,
+    "TagsCollection":  [
+
+                       ],
+    "FieldsFromGlobalBusiness":  {
+                                     "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                 }
+}

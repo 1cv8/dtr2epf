@@ -1,0 +1,44 @@
+{
+    "$type":  "DT.MdmMetadata.Types.Handler1c, DT_Core",
+    "KeepObjectLink":  true,
+    "ProcessingOrder":  0,
+    "Integration":  "FromPlatform",
+    "Type":  "Subscription1C",
+    "Code":  "[Handler] ArcticDelta_AdapterB_in [Code].ext",
+    "WaitResponse":  false,
+    "SubscriptionObject":  "Справочник.ArcticDelta",
+    "Parameters":  [
+
+                   ],
+    "Values":  [
+
+               ],
+    "DataFromPlatform":  {
+                             "$type":  "DT.MdmMetadata.BusinessProcesses.Fields.StructureField, DT_Core",
+                             "DataTypeId":  "eec391ed-7b7d-480d-a167-40741d3c61c2",
+                             "Name":  "ArcticDelta",
+                             "Id":  "353972e4-106a-4a14-a38b-535cd05e2ef3",
+                             "IsArray":  false,
+                             "IsRequired":  false,
+                             "IsNullable":  false,
+                             "Description":  "",
+                             "Properties":  {
+                                                "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                            },
+                             "AttributeId":  "00000000-0000-0000-0000-000000000000"
+                         },
+    "FolderId":  "4ca22c25-2849-49cd-9b1d-67b7b1c0f44f",
+    "NoTransaction":  false,
+    "EntityId":  "092a4491-1430-42a9-8a20-d528fca8e443",
+    "ClusterId":  "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+    "Name":  "ArcticDelta_AdapterB_in",
+    "Description":  "ArcticDelta_AdapterB_in",
+    "Comment":  "Generated for ArcticDelta",
+    "Version":  7,
+    "TagsCollection":  [
+
+                       ],
+    "FieldsFromGlobalBusiness":  {
+                                     "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                 }
+}

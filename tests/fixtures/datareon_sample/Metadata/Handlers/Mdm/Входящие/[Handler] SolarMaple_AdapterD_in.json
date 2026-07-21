@@ -1,0 +1,44 @@
+{
+    "$type":  "DT.MdmMetadata.Types.Handler1c, DT_Core",
+    "KeepObjectLink":  true,
+    "ProcessingOrder":  0,
+    "Integration":  "FromPlatform",
+    "Type":  "Subscription1C",
+    "Code":  "[Handler] SolarMaple_AdapterD_in [Code].ext",
+    "WaitResponse":  false,
+    "SubscriptionObject":  "Справочник.SolarMaple",
+    "Parameters":  [
+
+                   ],
+    "Values":  [
+
+               ],
+    "DataFromPlatform":  {
+                             "$type":  "DT.MdmMetadata.BusinessProcesses.Fields.StructureField, DT_Core",
+                             "DataTypeId":  "b0df7c0e-6236-4b9d-9524-791476338add",
+                             "Name":  "SolarMaple",
+                             "Id":  "a6e50076-1c5a-480b-9833-99df2b23928a",
+                             "IsArray":  false,
+                             "IsRequired":  false,
+                             "IsNullable":  false,
+                             "Description":  "",
+                             "Properties":  {
+                                                "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                            },
+                             "AttributeId":  "00000000-0000-0000-0000-000000000000"
+                         },
+    "FolderId":  "4ca22c25-2849-49cd-9b1d-67b7b1c0f44f",
+    "NoTransaction":  false,
+    "EntityId":  "5b96c17e-aa29-4af2-bb6a-8b47db4ba504",
+    "ClusterId":  "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+    "Name":  "SolarMaple_AdapterD_in",
+    "Description":  "SolarMaple_AdapterD_in",
+    "Comment":  "Generated for SolarMaple",
+    "Version":  34,
+    "TagsCollection":  [
+
+                       ],
+    "FieldsFromGlobalBusiness":  {
+                                     "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                 }
+}

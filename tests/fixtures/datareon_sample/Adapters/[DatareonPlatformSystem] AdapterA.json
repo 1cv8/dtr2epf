@@ -1,0 +1,118 @@
+{
+  "$type": "DT.ClusterConfiguration.DtSystem, DT_Core",
+  "Config": {
+    "$type": "DT.ConfigurationRepository.Configuration.Adapter._1CSystemConfig, DT_ConfigurationRepository",
+    "ConnectorType": "_1C",
+    "Protocol": "Tcp",
+    "DbName": "AdapterA_MDM",
+    "Key": "a07a5951-8f18-49ba-a38d-3e666f65601f",
+    "UseServiceCredentials": false,
+    "WebSettings": {
+      "$type": "DT.ConfigurationRepository.Configuration.Adapter.WebService1CSettings, DT_ConfigurationRepository",
+      "SystemConnectionSettings": {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.SystemConnectionSettings, DT_ConfigurationRepository",
+        "Servers": [
+          {
+            "$type": "DT.ConfigurationRepository.Configuration.Adapter.Server1C, DT_ConfigurationRepository",
+            "Server": "server",
+            "Port": 1541
+          }
+        ]
+      },
+      "UseHttps": false,
+      "PublishPort": 9010,
+      "MessageBatchMaxReceiveSize": 100,
+      "MessagesMaxReceiveBytes": 536870912,
+      "MessageBatchMaxSendSize": 0,
+      "MessageMaxSendSizeBytes": 0
+    },
+    "TcpSettings": {
+      "$type": "DT.ConfigurationRepository.Configuration.Adapter.Tcp1CSettings, DT_ConfigurationRepository",
+      "SystemConnectionSettings": {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.SystemConnectionSettings, DT_ConfigurationRepository",
+        "Servers": [
+          {
+            "$type": "DT.ConfigurationRepository.Configuration.Adapter.Server1C, DT_ConfigurationRepository",
+            "Server": "server",
+            "Port": 1541
+          }
+        ]
+      },
+      "Port": 9079
+    },
+    "Settings1C": {
+      "$type": "DT.ConfigurationRepository.Configuration.Adapter.Settings1CConfig, DT_ConfigurationRepository",
+      "ThreadCountToPlatform": 2,
+      "ThreadCountFromPlatform": 1,
+      "LiveTimeDefault": 7,
+      "UndefinedToPlatform": false,
+      "IgnorChangedDynamically": false,
+      "LogLevel": "Info",
+      "LogMbSize": 0,
+      "LogDaysSize": 0,
+      "BufferSizeMb": 10,
+      "BufferSizeMessages": 500,
+      "QueryBatchMessages": 50,
+      "CheckCacheVersion": true,
+      "WaitActualVersionSec": 20
+    },
+    "HandlersList": [
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "72075c61-7a93-4c99-8f46-22e35fafcfe7",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "2debb419-cd29-4ec9-85ca-81872d32cb9c",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "9dcf1f1d-fff0-4014-a72f-c46c39e9fc75",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "fe88f174-5ba0-44cd-a8df-59df79c609b1",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "11af5080-d158-4f79-9f96-5ac6548d0301",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "3ef60a5e-4dde-435b-9681-aeb29b9f38a1",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "0b6602ba-4ed5-457b-b19a-dbd1dfb879b5",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "617bf2a3-e612-4078-ab70-12ad10e5f19a",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "c52c9941-736c-4ce5-861e-fa561cc6fda9",
+        "IsStarted": true
+      }
+    ]
+  },
+  "IsActive": true,
+  "FolderId": "15118e3e-4d3b-4f41-96d4-043cde242d48",
+  "EntityId": "cb9e9218-6d5e-4b9c-8f40-68cf04fb4db6",
+  "ClusterId": "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+  "Name": "AdapterA",
+  "Description": "AdapterA",
+  "Version": 1,
+  "TagsCollection": [],
+  "FieldsFromGlobalBusiness": {
+    "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+  }
+}

@@ -1,0 +1,44 @@
+{
+    "$type":  "DT.MdmMetadata.Types.Handler1c, DT_Core",
+    "KeepObjectLink":  true,
+    "ProcessingOrder":  0,
+    "Integration":  "FromPlatform",
+    "Type":  "Subscription1C",
+    "Code":  "[Handler] CrystalCanyon_AdapterB_in [Code].ext",
+    "WaitResponse":  false,
+    "SubscriptionObject":  "Справочник.CrystalCanyon",
+    "Parameters":  [
+
+                   ],
+    "Values":  [
+
+               ],
+    "DataFromPlatform":  {
+                             "$type":  "DT.MdmMetadata.BusinessProcesses.Fields.StructureField, DT_Core",
+                             "DataTypeId":  "eb2f7bf4-1b8b-45e2-894c-3d8ef2a8d536",
+                             "Name":  "CrystalCanyon",
+                             "Id":  "caf6a860-feba-424b-b9b9-066f42fb85db",
+                             "IsArray":  false,
+                             "IsRequired":  false,
+                             "IsNullable":  false,
+                             "Description":  "",
+                             "Properties":  {
+                                                "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                            },
+                             "AttributeId":  "00000000-0000-0000-0000-000000000000"
+                         },
+    "FolderId":  "4ca22c25-2849-49cd-9b1d-67b7b1c0f44f",
+    "NoTransaction":  false,
+    "EntityId":  "729389e7-b8d4-45f2-89e9-8e403fa17ca4",
+    "ClusterId":  "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+    "Name":  "CrystalCanyon_AdapterB_in",
+    "Description":  "CrystalCanyon_AdapterB_in",
+    "Comment":  "Generated for CrystalCanyon",
+    "Version":  15,
+    "TagsCollection":  [
+
+                       ],
+    "FieldsFromGlobalBusiness":  {
+                                     "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                 }
+}

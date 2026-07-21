@@ -1,0 +1,44 @@
+{
+    "$type":  "DT.MdmMetadata.Types.Handler1c, DT_Core",
+    "KeepObjectLink":  true,
+    "ProcessingOrder":  0,
+    "Integration":  "ToPlatform",
+    "Type":  "Subscription1C",
+    "Code":  "[Handler] ArcticHaven_MDM_out [Code].ext",
+    "WaitResponse":  false,
+    "SubscriptionObject":  "Справочник.ArcticHaven",
+    "Parameters":  [
+
+                   ],
+    "Values":  [
+
+               ],
+    "DataToPlatform":  {
+                           "$type":  "DT.MdmMetadata.BusinessProcesses.Fields.StructureField, DT_Core",
+                           "DataTypeId":  "ca7ea30f-ced7-4693-a50a-f343c3f5310c",
+                           "Name":  "ArcticHaven",
+                           "Id":  "0a3c6164-9cd5-4b61-9a4a-2c68c828fff3",
+                           "IsArray":  false,
+                           "IsRequired":  false,
+                           "IsNullable":  false,
+                           "Description":  "",
+                           "Properties":  {
+                                              "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                          },
+                           "AttributeId":  "00000000-0000-0000-0000-000000000000"
+                       },
+    "FolderId":  "aea052ba-ec94-46e7-8551-3d2654d054d0",
+    "NoTransaction":  false,
+    "EntityId":  "be98fcbc-60ea-4b6b-85bd-513edb53187d",
+    "ClusterId":  "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+    "Name":  "ArcticHaven_MDM_out",
+    "Description":  "ArcticHaven_MDM_out",
+    "Comment":  "Generated for ArcticHaven",
+    "Version":  13,
+    "TagsCollection":  [
+
+                       ],
+    "FieldsFromGlobalBusiness":  {
+                                     "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                 }
+}

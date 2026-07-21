@@ -1,0 +1,44 @@
+{
+    "$type":  "DT.MdmMetadata.Types.Handler1c, DT_Core",
+    "KeepObjectLink":  true,
+    "ProcessingOrder":  0,
+    "Integration":  "ToPlatform",
+    "Type":  "Subscription1C",
+    "Code":  "[Handler] MellowStar_MDM_out [Code].ext",
+    "WaitResponse":  false,
+    "SubscriptionObject":  "Справочник.MellowStar",
+    "Parameters":  [
+
+                   ],
+    "Values":  [
+
+               ],
+    "DataToPlatform":  {
+                           "$type":  "DT.MdmMetadata.BusinessProcesses.Fields.StructureField, DT_Core",
+                           "DataTypeId":  "bd469bf5-4b0d-4c3b-b82e-ca4fed7211ca",
+                           "Name":  "MellowStar",
+                           "Id":  "0ba3dabc-321f-4a3e-ba98-4cb437367512",
+                           "IsArray":  false,
+                           "IsRequired":  false,
+                           "IsNullable":  false,
+                           "Description":  "",
+                           "Properties":  {
+                                              "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                          },
+                           "AttributeId":  "00000000-0000-0000-0000-000000000000"
+                       },
+    "FolderId":  "aea052ba-ec94-46e7-8551-3d2654d054d0",
+    "NoTransaction":  false,
+    "EntityId":  "d62f4759-1aa9-4f25-b96b-66981a97f67e",
+    "ClusterId":  "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+    "Name":  "MellowStar_MDM_out",
+    "Description":  "MellowStar_MDM_out",
+    "Comment":  "Generated for MellowStar",
+    "Version":  8,
+    "TagsCollection":  [
+
+                       ],
+    "FieldsFromGlobalBusiness":  {
+                                     "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                 }
+}

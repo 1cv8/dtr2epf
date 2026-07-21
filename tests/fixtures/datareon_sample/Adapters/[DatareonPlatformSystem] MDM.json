@@ -1,0 +1,263 @@
+{
+  "$type": "DT.ClusterConfiguration.DtSystem, DT_Core",
+  "Config": {
+    "$type": "DT.ConfigurationRepository.Configuration.Adapter._1CSystemConfig, DT_ConfigurationRepository",
+    "ConnectorType": "_1C",
+    "Protocol": "Tcp",
+    "DbName": "MDM",
+    "Key": "78012860-bffc-4ff4-b6d1-05f28c755656",
+    "UseServiceCredentials": false,
+    "WebSettings": {
+      "$type": "DT.ConfigurationRepository.Configuration.Adapter.WebService1CSettings, DT_ConfigurationRepository",
+      "SystemConnectionSettings": {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.SystemConnectionSettings, DT_ConfigurationRepository",
+        "Servers": [
+          {
+            "$type": "DT.ConfigurationRepository.Configuration.Adapter.Server1C, DT_ConfigurationRepository",
+            "Server": "server",
+            "Port": 1541
+          }
+        ]
+      },
+      "UseHttps": false,
+      "PublishPort": 9010,
+      "MessageBatchMaxReceiveSize": 100,
+      "MessagesMaxReceiveBytes": 536870912,
+      "MessageBatchMaxSendSize": 0,
+      "MessageMaxSendSizeBytes": 0
+    },
+    "TcpSettings": {
+      "$type": "DT.ConfigurationRepository.Configuration.Adapter.Tcp1CSettings, DT_ConfigurationRepository",
+      "SystemConnectionSettings": {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.SystemConnectionSettings, DT_ConfigurationRepository",
+        "Servers": [
+          {
+            "$type": "DT.ConfigurationRepository.Configuration.Adapter.Server1C, DT_ConfigurationRepository",
+            "Server": "server",
+            "Port": 1541
+          }
+        ]
+      },
+      "Port": 9081
+    },
+    "Settings1C": {
+      "$type": "DT.ConfigurationRepository.Configuration.Adapter.Settings1CConfig, DT_ConfigurationRepository",
+      "ThreadCountToPlatform": 2,
+      "ThreadCountFromPlatform": 1,
+      "LiveTimeDefault": 7,
+      "UndefinedToPlatform": false,
+      "IgnorChangedDynamically": false,
+      "LogLevel": "Info",
+      "LogMbSize": 0,
+      "LogDaysSize": 0,
+      "BufferSizeMb": 10,
+      "BufferSizeMessages": 500,
+      "QueryBatchMessages": 50,
+      "CheckCacheVersion": true,
+      "WaitActualVersionSec": 20
+    },
+    "HandlersList": [
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "e7311052-2a40-4897-b410-48e838b304aa",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "0c5949f9-a9b3-406b-a0a0-0012957c067c",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "8f745af0-2bd0-46e7-b107-cd1921e19a05",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "ef43d957-3a01-462e-9ab8-a78c4beebbc3",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "f7e73435-0aff-49cf-936c-632fa6bb888e",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "78efcd6f-68ca-4772-81b2-807c7de1409a",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "aa29b35d-f49d-4485-81ea-d4e2cc718328",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "8a4135c1-450f-40a7-a3b5-e379aaf56021",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "d23fd6d3-e9c7-48cb-8ac2-776658d17770",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "db3b8993-b5fb-4e2d-8c5d-e1a122c4f710",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "ba0be54b-9334-4957-b8c0-0bf933aa45fb",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "be98fcbc-60ea-4b6b-85bd-513edb53187d",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "2d86aa7e-ebb8-4ff2-a101-f5af0cb5da2d",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "d8bc1cf3-31b8-4b82-9243-4cfcc7c66c19",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "d5936dea-1249-4fc9-a902-1863fd2f358e",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "5062de7f-aab3-4b91-ad25-67f4026c64d9",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "6650b056-9619-4e35-911b-df117a1bc693",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "e10b0374-2812-4c00-9c4e-6927449fb62c",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "9d6d3458-4550-4603-9f61-91469985aae7",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "276dd0fa-75d9-4f61-8a55-5f236f9984f9",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "31f407ed-ae17-4350-99aa-e8a832102a6b",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "6f47a01b-3996-46b6-815f-55c097a29e2c",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "f52bfbd0-8c8c-4a26-8525-8c314eec7aa5",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "d47316c9-34a6-4077-8bdb-c38ede4ac6ae",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "8eaa0151-3aad-46aa-beee-29d47df1ed04",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "8d75de22-1d06-499b-ba0b-5fc9ce32ca29",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "2116bdbf-f4a4-40bb-b716-86d93df6a84f",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "61ceea55-423b-4afd-ab6c-3d7bf5efc164",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "ea17e709-2ddc-42ad-b7e8-0111ac73ec29",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "f7819d81-566c-4e69-b398-b68b89871d1d",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "e52288a0-8cdf-470c-96d1-14d605f8beea",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "e11369af-b247-478d-9469-98da513dcd37",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "66a58b27-e5ea-47e0-8df3-db7783cdf146",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "06abaced-d949-4422-8b62-b3f4d16d4d14",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "7c81e34a-4b65-4a3f-975b-c695c2263f9e",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "d62f4759-1aa9-4f25-b96b-66981a97f67e",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "5552bb83-4729-4a01-a914-de67b3db762c",
+        "IsStarted": true
+      },
+      {
+        "$type": "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+        "HandlerId": "70a0bbbf-3487-414d-8c86-5df52e441a74",
+        "IsStarted": true
+      }
+    ]
+  },
+  "IsActive": true,
+  "FolderId": "15118e3e-4d3b-4f41-96d4-043cde242d48",
+  "EntityId": "63db9957-c554-4866-8ab2-f007cd6f6696",
+  "ClusterId": "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+  "Name": "MDM",
+  "Description": "MDM",
+  "Version": 1,
+  "TagsCollection": [],
+  "FieldsFromGlobalBusiness": {
+    "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+  }
+}

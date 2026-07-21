@@ -1,0 +1,44 @@
+{
+    "$type":  "DT.MdmMetadata.Types.Handler1c, DT_Core",
+    "KeepObjectLink":  true,
+    "ProcessingOrder":  0,
+    "Integration":  "FromPlatform",
+    "Type":  "Subscription1C",
+    "Code":  "[Handler] QuietStar_AdapterB_in [Code].ext",
+    "WaitResponse":  false,
+    "SubscriptionObject":  "Документ.QuietStar",
+    "Parameters":  [
+
+                   ],
+    "Values":  [
+
+               ],
+    "DataFromPlatform":  {
+                             "$type":  "DT.MdmMetadata.BusinessProcesses.Fields.StructureField, DT_Core",
+                             "DataTypeId":  "893cef2c-3390-45f0-9162-4a251ed7df0a",
+                             "Name":  "QuietStar",
+                             "Id":  "c71d873d-a36d-4247-9ac7-95448814d5c3",
+                             "IsArray":  false,
+                             "IsRequired":  false,
+                             "IsNullable":  false,
+                             "Description":  "",
+                             "Properties":  {
+                                                "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                            },
+                             "AttributeId":  "00000000-0000-0000-0000-000000000000"
+                         },
+    "FolderId":  "4ca22c25-2849-49cd-9b1d-67b7b1c0f44f",
+    "NoTransaction":  false,
+    "EntityId":  "ed014084-00c0-4036-a7d8-2a2134e7674f",
+    "ClusterId":  "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+    "Name":  "QuietStar_AdapterB_in",
+    "Description":  "QuietStar_AdapterB_in",
+    "Comment":  "Generated for QuietStar",
+    "Version":  38,
+    "TagsCollection":  [
+
+                       ],
+    "FieldsFromGlobalBusiness":  {
+                                     "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                 }
+}

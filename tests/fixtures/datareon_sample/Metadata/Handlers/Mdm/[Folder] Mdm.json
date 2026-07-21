@@ -1,0 +1,13 @@
+{
+  "$type": "DT.Folder, DT_Core",
+  "FolderId": "44ec3338-c3d9-4eec-aa18-d8237dd47099",
+  "ChildrenType": "Handlers",
+  "EntityId": "8bcee305-e5ca-4c47-8a2a-aa2f6f46e73d",
+  "ClusterId": "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+  "Name": "Mdm",
+  "Description": "MDM",
+  "Version": 2,
+  "FieldsFromGlobalBusiness": {
+    "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+  }
+}

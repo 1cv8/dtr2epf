@@ -1,0 +1,43 @@
+{
+    "$type":  "DT.MdmMetadata.Types.Handler1c, DT_Core",
+    "KeepObjectLink":  true,
+    "ProcessingOrder":  0,
+    "Integration":  "ToPlatform",
+    "Type":  "Subscription1C",
+    "Code":  "[Handler] IvoryTrail_MDM_out [Code].ext",
+    "WaitResponse":  false,
+    "SubscriptionObject":  "Справочник.IvoryTrail",
+    "Parameters":  [
+
+                   ],
+    "Values":  [
+
+               ],
+    "DataToPlatform":  {
+                           "$type":  "DT.MdmMetadata.BusinessProcesses.Fields.StructureField, DT_Core",
+                           "DataTypeId":  "eb2f7bf4-1b8b-45e2-894c-3d8ef2a8d536",
+                           "Name":  "IvoryTrail",
+                           "Id":  "354e3903-3215-4509-b6d0-5330ce4bd712",
+                           "IsArray":  false,
+                           "IsRequired":  false,
+                           "IsNullable":  false,
+                           "Description":  "",
+                           "Properties":  {
+                                              "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                          },
+                           "AttributeId":  "00000000-0000-0000-0000-000000000000"
+                       },
+    "FolderId":  "aea052ba-ec94-46e7-8551-3d2654d054d0",
+    "NoTransaction":  false,
+    "EntityId":  "31f407ed-ae17-4350-99aa-e8a832102a6b",
+    "ClusterId":  "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+    "Name":  "IvoryTrail_MDM_out",
+    "Description":  "IvoryTrail_MDM_out",
+    "Version":  11,
+    "TagsCollection":  [
+
+                       ],
+    "FieldsFromGlobalBusiness":  {
+                                     "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                 }
+}

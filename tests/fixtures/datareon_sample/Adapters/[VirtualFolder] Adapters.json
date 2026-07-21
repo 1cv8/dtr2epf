@@ -1,0 +1,12 @@
+{
+  "$type": "DT.VirtualFolder, DT_Core",
+  "Type": "Systems",
+  "FolderId": "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+  "EntityId": "15118e3e-4d3b-4f41-96d4-043cde242d48",
+  "ClusterId": "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+  "Name": "Адаптеры",
+  "Version": 1,
+  "FieldsFromGlobalBusiness": {
+    "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+  }
+}

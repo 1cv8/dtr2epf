@@ -1,0 +1,58 @@
+{
+    "$type":  "DT.MdmMetadata.Types.Handler1c, DT_Core",
+    "KeepObjectLink":  true,
+    "ProcessingOrder":  0,
+    "Integration":  "ToPlatform",
+    "Type":  "Subscription1C",
+    "Code":  "[Handler] AzureLake_MDM_out [Code].ext",
+    "WaitResponse":  false,
+    "SubscriptionObject":  "Справочник.AzureLake",
+    "Parameters":  [
+
+                   ],
+    "Values":  [
+
+               ],
+    "DataFromPlatform":  {
+                             "$type":  "DT.MdmMetadata.BusinessProcesses.Fields.StructureField, DT_Core",
+                             "DataTypeId":  "b0df7c0e-6236-4b9d-9524-791476338add",
+                             "Name":  "AzureLake",
+                             "Id":  "9af4bf57-bb27-4da3-b3ea-8bc8b41893f1",
+                             "IsArray":  false,
+                             "IsRequired":  false,
+                             "IsNullable":  false,
+                             "Description":  "",
+                             "Properties":  {
+                                                "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                            },
+                             "AttributeId":  "00000000-0000-0000-0000-000000000000"
+                         },
+    "DataToPlatform":  {
+                           "$type":  "DT.MdmMetadata.BusinessProcesses.Fields.StructureField, DT_Core",
+                           "DataTypeId":  "b0df7c0e-6236-4b9d-9524-791476338add",
+                           "Name":  "AzureLake",
+                           "Id":  "27f8732c-07d0-4903-abd9-8baebeadd4a2",
+                           "IsArray":  false,
+                           "IsRequired":  false,
+                           "IsNullable":  false,
+                           "Description":  "",
+                           "Properties":  {
+                                              "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                          },
+                           "AttributeId":  "00000000-0000-0000-0000-000000000000"
+                       },
+    "FolderId":  "aea052ba-ec94-46e7-8551-3d2654d054d0",
+    "NoTransaction":  false,
+    "EntityId":  "7c81e34a-4b65-4a3f-975b-c695c2263f9e",
+    "ClusterId":  "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+    "Name":  "AzureLake_MDM_out",
+    "Description":  "AzureLake_MDM_out",
+    "Comment":  "Generated for AzureLake",
+    "Version":  18,
+    "TagsCollection":  [
+
+                       ],
+    "FieldsFromGlobalBusiness":  {
+                                     "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                 }
+}

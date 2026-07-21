@@ -1,0 +1,95 @@
+{
+    "$type":  "DT.ClusterConfiguration.DtSystem, DT_Core",
+    "Config":  {
+                   "$type":  "DT.ConfigurationRepository.Configuration.Adapter._1CSystemConfig, DT_ConfigurationRepository",
+                   "ConnectorType":  "_1C",
+                   "Protocol":  "Tcp",
+                   "DbName":  "AdapterD",
+                   "Key":  "87ca55d6-5253-4bfe-bf98-fd6328c3c343",
+                   "UseServiceCredentials":  false,
+                   "WebSettings":  {
+                                       "$type":  "DT.ConfigurationRepository.Configuration.Adapter.WebService1CSettings, DT_ConfigurationRepository",
+                                       "SystemConnectionSettings":  {
+                                                                        "$type":  "DT.ConfigurationRepository.Configuration.Adapter.SystemConnectionSettings, DT_ConfigurationRepository",
+                                                                        "Servers":  [
+                                                                                        {
+                                                                                            "$type":  "DT.ConfigurationRepository.Configuration.Adapter.Server1C, DT_ConfigurationRepository",
+                                                                                            "Server":  "server",
+                                                                                            "Port":  1541
+                                                                                        }
+                                                                                    ]
+                                                                    },
+                                       "UseHttps":  false,
+                                       "PublishPort":  8090,
+                                       "MessageBatchMaxReceiveSize":  100,
+                                       "MessagesMaxReceiveBytes":  536870912,
+                                       "MessageBatchMaxSendSize":  0,
+                                       "MessageMaxSendSizeBytes":  0
+                                   },
+                   "TcpSettings":  {
+                                       "$type":  "DT.ConfigurationRepository.Configuration.Adapter.Tcp1CSettings, DT_ConfigurationRepository",
+                                       "SystemConnectionSettings":  {
+                                                                        "$type":  "DT.ConfigurationRepository.Configuration.Adapter.SystemConnectionSettings, DT_ConfigurationRepository",
+                                                                        "Servers":  [
+                                                                                        {
+                                                                                            "$type":  "DT.ConfigurationRepository.Configuration.Adapter.Server1C, DT_ConfigurationRepository",
+                                                                                            "Server":  "server",
+                                                                                            "Port":  1541
+                                                                                        }
+                                                                                    ]
+                                                                    },
+                                       "Port":  9076
+                                   },
+                   "Settings1C":  {
+                                      "$type":  "DT.ConfigurationRepository.Configuration.Adapter.Settings1CConfig, DT_ConfigurationRepository",
+                                      "ThreadCountToPlatform":  3,
+                                      "ThreadCountFromPlatform":  3,
+                                      "LiveTimeDefault":  7,
+                                      "UndefinedToPlatform":  false,
+                                      "IgnorChangedDynamically":  false,
+                                      "LogLevel":  "Info",
+                                      "LogMbSize":  0,
+                                      "LogDaysSize":  0,
+                                      "BufferSizeMb":  10,
+                                      "BufferSizeMessages":  500,
+                                      "QueryBatchMessages":  50,
+                                      "CheckCacheVersion":  true,
+                                      "WaitActualVersionSec":  20
+                                  },
+                   "HandlersList":  [
+                                        {
+                                            "$type":  "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+                                            "HandlerId":  "cf5899e0-21c6-429b-9b9a-a18f78833593",
+                                            "IsStarted":  true
+                                        },
+                                        {
+                                            "$type":  "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+                                            "HandlerId":  "e4f5c2d3-bd34-4dc5-b5cc-240ef73c3118",
+                                            "IsStarted":  true
+                                        },
+                                        {
+                                            "$type":  "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+                                            "HandlerId":  "a612a4a2-5bd0-4b98-867f-ef187be30215",
+                                            "IsStarted":  true
+                                        },
+                                        {
+                                            "$type":  "DT.ConfigurationRepository.Configuration.Adapter.HandlerInfoConfig, DT_Core",
+                                            "HandlerId":  "5b96c17e-aa29-4af2-bb6a-8b47db4ba504",
+                                            "IsStarted":  true
+                                        }
+                                    ]
+               },
+    "IsActive":  true,
+    "FolderId":  "15118e3e-4d3b-4f41-96d4-043cde242d48",
+    "EntityId":  "9b4cac38-0942-4efe-9732-9668253fae0c",
+    "ClusterId":  "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+    "Name":  "AdapterD",
+    "Description":  "AdapterD",
+    "Version":  1,
+    "TagsCollection":  [
+
+                       ],
+    "FieldsFromGlobalBusiness":  {
+                                     "$type":  "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+                                 }
+}

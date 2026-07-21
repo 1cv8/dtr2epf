@@ -1,0 +1,12 @@
+{
+  "$type": "DT.VirtualFolder, DT_Core",
+  "Type": "Handlers",
+  "FolderId": "c83f0346-db29-46a7-b7c5-1885b65876bd",
+  "EntityId": "44ec3338-c3d9-4eec-aa18-d8237dd47099",
+  "ClusterId": "ef2f4d47-4d4c-438f-bd8c-b2ccf5462cf2",
+  "Name": "Обработчики",
+  "Version": 4,
+  "FieldsFromGlobalBusiness": {
+    "$type": "System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.String, System.Private.CoreLib]], System.Private.CoreLib"
+  }
+}
