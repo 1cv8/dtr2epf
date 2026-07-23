@@ -7,6 +7,10 @@ pub struct Templates {
     pub module: String,
     pub subscription_from_platform: String,
     pub subscription_to_platform: String,
+    #[serde(default = "default_syntax_control_from_platform")]
+    pub syntax_control_subscription_from_platform: String,
+    #[serde(default = "default_syntax_control_to_platform")]
+    pub syntax_control_subscription_to_platform: String,
     pub function: String,
     pub region_from_platform: String,
     pub region_to_platform: String,
@@ -33,6 +37,8 @@ impl Default for Templates {
             .to_owned(),
             subscription_to_platform: include_str!("../templates/subscription_to_platform.bsl.tpl")
                 .to_owned(),
+            syntax_control_subscription_from_platform: default_syntax_control_from_platform(),
+            syntax_control_subscription_to_platform: default_syntax_control_to_platform(),
             function: include_str!("../templates/function.bsl.tpl").to_owned(),
             region_from_platform: settings.region_from_platform,
             region_to_platform: settings.region_to_platform,
@@ -61,9 +67,27 @@ impl Templates {
                     .or_insert_with(|| legacy.clone());
                 object.entry("subscription_to_platform").or_insert(legacy);
             }
+            if !object.contains_key("syntax_control_subscription_from_platform") {
+                if let Some(template) = object.get("subscription_from_platform").cloned() {
+                    object.insert("syntax_control_subscription_from_platform".into(), template);
+                }
+            }
+            if !object.contains_key("syntax_control_subscription_to_platform") {
+                if let Some(template) = object.get("subscription_to_platform").cloned() {
+                    object.insert("syntax_control_subscription_to_platform".into(), template);
+                }
+            }
         }
         serde_json::from_value(json).map_err(|e| e.to_string())
     }
+}
+
+fn default_syntax_control_from_platform() -> String {
+    include_str!("../templates/syntax_control/subscription_from_platform.bsl.tpl").to_owned()
+}
+
+fn default_syntax_control_to_platform() -> String {
+    include_str!("../templates/syntax_control/subscription_to_platform.bsl.tpl").to_owned()
 }
 
 #[cfg(test)]
@@ -76,6 +100,8 @@ mod tests {
         let object = json.as_object_mut().unwrap();
         object.remove("subscription_from_platform");
         object.remove("subscription_to_platform");
+        object.remove("syntax_control_subscription_from_platform");
+        object.remove("syntax_control_subscription_to_platform");
         object.insert("subscription".into(), "LEGACY {{NAME}} {{CODE}}".into());
 
         let templates = Templates::from_json_text(&json.to_string()).unwrap();
@@ -86,6 +112,14 @@ mod tests {
         );
         assert_eq!(
             templates.subscription_to_platform,
+            "LEGACY {{NAME}} {{CODE}}"
+        );
+        assert_eq!(
+            templates.syntax_control_subscription_from_platform,
+            "LEGACY {{NAME}} {{CODE}}"
+        );
+        assert_eq!(
+            templates.syntax_control_subscription_to_platform,
             "LEGACY {{NAME}} {{CODE}}"
         );
     }

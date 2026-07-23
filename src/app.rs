@@ -1,4 +1,4 @@
-use crate::generator::{GenerationIssue, Severity, generate};
+use crate::generator::{GenerationIssue, GenerationVariant, Severity, generate};
 use crate::model::{Project, TreeRowKind, TreeSort};
 use crate::templates::Templates;
 use std::collections::{HashMap, HashSet};
@@ -25,6 +25,7 @@ pub struct DtrApp {
     adapter_selected: HashSet<String>,
     expanded: HashSet<String>,
     templates: Templates,
+    generation_variant: GenerationVariant,
     filter: String,
     tree_sort: TreeSort,
     adapter_sort: AdapterSort,
@@ -48,6 +49,7 @@ impl DtrApp {
             adapter_selected: HashSet::new(),
             expanded: HashSet::new(),
             templates: Templates::default(),
+            generation_variant: GenerationVariant::Debug,
             filter: String::new(),
             tree_sort: TreeSort::Name,
             adapter_sort: AdapterSort::Name,
@@ -158,7 +160,12 @@ impl DtrApp {
             self.status = "Сначала загрузите исходники".to_owned();
             return;
         };
-        let result = generate(project, &self.selected, &self.templates);
+        let result = generate(
+            project,
+            &self.selected,
+            &self.templates,
+            self.generation_variant,
+        );
         self.preview = result.text;
         self.issues = result.issues;
         let errors = self
@@ -167,8 +174,9 @@ impl DtrApp {
             .filter(|i| i.severity == Severity::Error)
             .count();
         self.status = format!(
-            "Сформировано элементов: {}; ошибок: {errors}",
-            result.selected_count
+            "Сформировано элементов: {}; вариант: {}; ошибок: {errors}",
+            result.selected_count,
+            self.generation_variant.label()
         );
         self.tab = Tab::Preview;
     }
@@ -492,7 +500,7 @@ impl DtrApp {
                         );
                     });
                 ui.add(
-                    egui::Label::new("Плейсхолдеры элемента: {{NAME}}, {{ORIGINAL_NAME}}, {{PARAMETERS}}, {{CODE}}, {{TYPE}}, {{INTEGRATION}}, {{ENTITY_ID}}, {{SOURCE_PATH}}")
+                    egui::Label::new("Плейсхолдеры элемента: {{NAME}}, {{ORIGINAL_NAME}}, {{PARAMETERS}}, {{CODE}}, {{TYPE}}, {{INTEGRATION}}, {{ENTITY_ID}}, {{SOURCE_PATH}}, {{SUBSCRIPTION_OBJECT}}, {{SUBSCRIPTION_OBJECT_MANAGER}}, {{SUBSCRIPTION_OBJECT_TYPE_REF}}, {{SUBSCRIPTION_OBJECT_TYPE_OBJ}}. Объект подписки, его менеджер и типы заполняются только для Subscription1C / ToPlatform.")
                         .wrap(),
                 );
                 ui.separator();
@@ -500,9 +508,10 @@ impl DtrApp {
                 template_editor_block(
                     ui,
                     "template_module",
-                    "Шаблон модуля",
+                    "Общий шаблон модуля",
                     &mut self.templates.module,
                 );
+                ui.strong("Вариант «Для отладки»");
                 template_editor_block(
                     ui,
                     "template_from_platform",
@@ -515,6 +524,20 @@ impl DtrApp {
                     "Исходящий обработчик ToPlatform ← 1С",
                     &mut self.templates.subscription_to_platform,
                 );
+                ui.strong("Вариант «Для синтаксического контроля»");
+                template_editor_block(
+                    ui,
+                    "syntax_control_template_from_platform",
+                    "Входящий обработчик FromPlatform → 1С",
+                    &mut self.templates.syntax_control_subscription_from_platform,
+                );
+                template_editor_block(
+                    ui,
+                    "syntax_control_template_to_platform",
+                    "Исходящий обработчик ToPlatform ← 1С",
+                    &mut self.templates.syntax_control_subscription_to_platform,
+                );
+                ui.strong("Общий шаблон функций");
                 template_editor_block(
                     ui,
                     "template_function",
@@ -612,7 +635,22 @@ impl egui_software_backend::App for DtrApp {
     ) {
         egui::Panel::top("top").show_inside(root_ui, |ui| self.top_bar(ui));
         egui::Panel::bottom("bottom").show_inside(root_ui, |ui| {
-            ui.horizontal(|ui| {
+            ui.horizontal_wrapped(|ui| {
+                ui.label("Вариант генерации:");
+                egui::ComboBox::from_id_salt("generation_variant")
+                    .selected_text(self.generation_variant.label())
+                    .show_ui(ui, |ui| {
+                        ui.selectable_value(
+                            &mut self.generation_variant,
+                            GenerationVariant::Debug,
+                            GenerationVariant::Debug.label(),
+                        );
+                        ui.selectable_value(
+                            &mut self.generation_variant,
+                            GenerationVariant::SyntaxControl,
+                            GenerationVariant::SyntaxControl.label(),
+                        );
+                    });
                 if ui.button("Сформировать обработку").clicked() {
                     self.save_module();
                 }
@@ -742,6 +780,7 @@ mod tests {
         assert!(app.source_path.is_empty());
         assert!(app.project.is_none());
         assert!(app.selected.is_empty());
+        assert!(app.generation_variant == GenerationVariant::Debug);
     }
 
     #[test]
