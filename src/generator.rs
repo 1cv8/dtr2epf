@@ -201,6 +201,14 @@ fn render_item(template: &str, handler: &Handler, name: &str) -> String {
             "{{SUBSCRIPTION_OBJECT_MANAGER}}",
             subscription_object_manager(&handler.subscription_object),
         ),
+        (
+            "{{SUBSCRIPTION_OBJECT_TYPE_REF}}",
+            subscription_object_type_ref(&handler.subscription_object),
+        ),
+        (
+            "{{SUBSCRIPTION_OBJECT_TYPE_OBJ}}",
+            subscription_object_type_obj(&handler.subscription_object),
+        ),
         ("{{ENTITY_ID}}", handler.id.clone()),
         ("{{SOURCE_PATH}}", handler.code_path.display().to_string()),
         ("{{PARAMETERS}}", parameters),
@@ -254,6 +262,88 @@ fn subscription_object_manager(subscription_object: &str) -> String {
         _ => return String::new(),
     };
     format!("{manager}.{object_name}")
+}
+
+const SUBSCRIPTION_OBJECT_TYPES: &[(&str, &str, &str)] = &[
+    ("ПЛАНОБМЕНА", "ПланОбменаСсылка", "ПланОбменаОбъект"),
+    ("СПРАВОЧНИК", "СправочникСсылка", "СправочникОбъект"),
+    ("ДОКУМЕНТ", "ДокументСсылка", "ДокументОбъект"),
+    ("ПЕРЕЧИСЛЕНИЕ", "ПеречислениеСсылка", "ПеречислениеСсылка"),
+    ("ОТЧЕТ", "ОтчетОбъект", "ОтчетОбъект"),
+    ("ОБРАБОТКА", "ОбработкаОбъект", "ОбработкаОбъект"),
+    (
+        "ПЛАНВИДОВХАРАКТЕРИСТИК",
+        "ПланВидовХарактеристикСсылка",
+        "ПланВидовХарактеристикОбъект",
+    ),
+    ("ПЛАНСЧЕТОВ", "ЛюбаяСсылка", "ЛюбаяСсылка"),
+    ("ПЛАНВИДОВРАСЧЕТА", "ЛюбаяСсылка", "ЛюбаяСсылка"),
+    (
+        "РЕГИСТРСВЕДЕНИЙ",
+        "РегистрСведенийНаборЗаписей",
+        "РегистрСведенийНаборЗаписей",
+    ),
+    (
+        "РЕГИСТРНАКОПЛЕНИЯ",
+        "РегистрСведенийНаборЗаписей",
+        "РегистрСведенийНаборЗаписей",
+    ),
+    (
+        "РЕГИСТРБУХГАЛТЕРИИ",
+        "РегистрСведенийНаборЗаписей",
+        "РегистрСведенийНаборЗаписей",
+    ),
+    (
+        "РЕГИСТРРАСЧЕТА",
+        "РегистрСведенийНаборЗаписей",
+        "РегистрСведенийНаборЗаписей",
+    ),
+    (
+        "БИЗНЕСПРОЦЕСС",
+        "БизнесПроцессСсылка",
+        "БизнесПроцессОбъект",
+    ),
+    ("ЗАДАЧА", "ЗадачаСсылка", "ЗадачаОбъект"),
+    ("КОНСТАНТА", "КонстантаМенеджер", "КонстантаМенеджер"),
+    ("ПОСЛЕДОВАТЕЛЬНОСТЬ", "ЛюбаяСсылка", "ЛюбаяСсылка"),
+];
+
+fn subscription_object_type_ref(subscription_object: &str) -> String {
+    subscription_object_type(subscription_object, SubscriptionObjectType::Reference)
+}
+
+fn subscription_object_type_obj(subscription_object: &str) -> String {
+    subscription_object_type(subscription_object, SubscriptionObjectType::Object)
+}
+
+enum SubscriptionObjectType {
+    Reference,
+    Object,
+}
+
+fn subscription_object_type(
+    subscription_object: &str,
+    requested_type: SubscriptionObjectType,
+) -> String {
+    let Some((class, object_name)) = subscription_object.split_once('.') else {
+        return String::new();
+    };
+    let class = class.trim().to_uppercase();
+    let object_name = object_name.trim();
+    if class.is_empty() || object_name.is_empty() {
+        return String::new();
+    }
+    let Some((_, reference_type, object_type)) = SUBSCRIPTION_OBJECT_TYPES
+        .iter()
+        .find(|(known_class, _, _)| *known_class == class)
+    else {
+        return String::new();
+    };
+    let type_name = match requested_type {
+        SubscriptionObjectType::Reference => reference_type,
+        SubscriptionObjectType::Object => object_type,
+    };
+    format!("{type_name}.{object_name}")
 }
 
 fn validate_template(
@@ -368,6 +458,78 @@ mod tests {
     }
 
     #[test]
+    fn converts_subscription_object_classes_to_reference_and_object_types() {
+        let cases = [
+            ("ПланОбмена", "ПланОбменаСсылка", "ПланОбменаОбъект"),
+            ("Справочник", "СправочникСсылка", "СправочникОбъект"),
+            ("Документ", "ДокументСсылка", "ДокументОбъект"),
+            ("Перечисление", "ПеречислениеСсылка", "ПеречислениеСсылка"),
+            ("Отчет", "ОтчетОбъект", "ОтчетОбъект"),
+            ("Обработка", "ОбработкаОбъект", "ОбработкаОбъект"),
+            (
+                "ПланВидовХарактеристик",
+                "ПланВидовХарактеристикСсылка",
+                "ПланВидовХарактеристикОбъект",
+            ),
+            ("ПланСчетов", "ЛюбаяСсылка", "ЛюбаяСсылка"),
+            ("ПланВидовРасчета", "ЛюбаяСсылка", "ЛюбаяСсылка"),
+            (
+                "РегистрСведений",
+                "РегистрСведенийНаборЗаписей",
+                "РегистрСведенийНаборЗаписей",
+            ),
+            (
+                "РегистрНакопления",
+                "РегистрСведенийНаборЗаписей",
+                "РегистрСведенийНаборЗаписей",
+            ),
+            (
+                "РегистрБухгалтерии",
+                "РегистрСведенийНаборЗаписей",
+                "РегистрСведенийНаборЗаписей",
+            ),
+            (
+                "РегистрРасчета",
+                "РегистрСведенийНаборЗаписей",
+                "РегистрСведенийНаборЗаписей",
+            ),
+            (
+                "БизнесПроцесс",
+                "БизнесПроцессСсылка",
+                "БизнесПроцессОбъект",
+            ),
+            ("Задача", "ЗадачаСсылка", "ЗадачаОбъект"),
+            ("Константа", "КонстантаМенеджер", "КонстантаМенеджер"),
+            ("Последовательность", "ЛюбаяСсылка", "ЛюбаяСсылка"),
+        ];
+
+        for (source_class, expected_ref, expected_obj) in cases {
+            let source = format!("{source_class}.Test");
+            assert_eq!(
+                subscription_object_type_ref(&source),
+                format!("{expected_ref}.Test"),
+                "{source}"
+            );
+            assert_eq!(
+                subscription_object_type_obj(&source),
+                format!("{expected_obj}.Test"),
+                "{source}"
+            );
+        }
+        assert_eq!(
+            subscription_object_type_ref("справочник.Автомобили"),
+            "СправочникСсылка.Автомобили"
+        );
+        assert_eq!(
+            subscription_object_type_obj("РегистрРасчета.Payroll.Перерасчет.Adjustment"),
+            "РегистрСведенийНаборЗаписей.Payroll.Перерасчет.Adjustment"
+        );
+        assert!(subscription_object_type_ref("Unknown.Test").is_empty());
+        assert!(subscription_object_type_obj("Справочник").is_empty());
+        assert!(subscription_object_type_ref("Справочник.").is_empty());
+    }
+
+    #[test]
     fn subscription_placeholders_are_filled_only_for_outgoing_handlers() {
         let project = load_fixture();
         let outgoing = project
@@ -383,16 +545,21 @@ mod tests {
             .iter()
             .find(|handler| handler.integration == Integration::FromPlatform)
             .expect("fixture has an incoming handler");
-        let template = "{{SUBSCRIPTION_OBJECT}}|{{SUBSCRIPTION_OBJECT_MANAGER}}";
+        let template = "{{SUBSCRIPTION_OBJECT}}|{{SUBSCRIPTION_OBJECT_MANAGER}}|{{SUBSCRIPTION_OBJECT_TYPE_REF}}|{{SUBSCRIPTION_OBJECT_TYPE_OBJ}}";
 
         let outgoing_text = render_item(template, outgoing, &outgoing.name);
         let expected_manager = subscription_object_manager(&outgoing.subscription_object);
+        let expected_type_ref = subscription_object_type_ref(&outgoing.subscription_object);
+        let expected_type_obj = subscription_object_type_obj(&outgoing.subscription_object);
         assert_eq!(
             outgoing_text,
-            format!("{}|{expected_manager}", outgoing.subscription_object)
+            format!(
+                "{}|{expected_manager}|{expected_type_ref}|{expected_type_obj}",
+                outgoing.subscription_object
+            )
         );
         assert!(incoming.subscription_object.is_empty());
-        assert_eq!(render_item(template, incoming, &incoming.name), "|");
+        assert_eq!(render_item(template, incoming, &incoming.name), "|||");
     }
 
     #[test]

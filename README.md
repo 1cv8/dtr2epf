@@ -44,9 +44,9 @@ cargo test
 
 Шаблон модуля использует `{{FROM_PLATFORM}}`, `{{TO_PLATFORM}}`, `{{FUNCTIONS}}`, `{{REGION_*}}`, `{{GENERATED_AT}}` и `{{SELECTED_COUNT}}`.
 
-Шаблоны методов используют `{{NAME}}`, `{{ORIGINAL_NAME}}`, `{{PARAMETERS}}`, `{{CODE}}`, `{{TYPE}}`, `{{INTEGRATION}}`, `{{ENTITY_ID}}`, `{{SOURCE_PATH}}`, `{{SUBSCRIPTION_OBJECT}}` и `{{SUBSCRIPTION_OBJECT_MANAGER}}`.
+Шаблоны методов используют `{{NAME}}`, `{{ORIGINAL_NAME}}`, `{{PARAMETERS}}`, `{{CODE}}`, `{{TYPE}}`, `{{INTEGRATION}}`, `{{ENTITY_ID}}`, `{{SOURCE_PATH}}`, `{{SUBSCRIPTION_OBJECT}}`, `{{SUBSCRIPTION_OBJECT_MANAGER}}`, `{{SUBSCRIPTION_OBJECT_TYPE_REF}}` и `{{SUBSCRIPTION_OBJECT_TYPE_OBJ}}`.
 
-`{{SUBSCRIPTION_OBJECT}}` и `{{SUBSCRIPTION_OBJECT_MANAGER}}` заполняются только для обработчиков `Subscription1C / ToPlatform`. Например, для `Справочник.Автомобили` значением менеджера будет `Справочники.Автомобили`.
+Плейсхолдеры на основе `SUBSCRIPTION_OBJECT` заполняются только для обработчиков `Subscription1C / ToPlatform`. Например, для `Справочник.Автомобили` значениями будут `Справочники.Автомобили`, `СправочникСсылка.Автомобили` и `СправочникОбъект.Автомобили`.
 
 ## Лицензия
 
